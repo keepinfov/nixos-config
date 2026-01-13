@@ -16,6 +16,8 @@
       maxretry = 10;
       bantime-increment.enable = true;
     };
+
+	v2raya.enable = true;
   };
   
   # Security hardening
