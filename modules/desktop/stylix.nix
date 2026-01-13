@@ -13,8 +13,8 @@ in
   stylix = {
     enable = true;
 
-    # Solid black wallpaper
-    image = solidBlackWallpaper;
+    # Wallpaper from centralized config
+    image = conf.theme.wallpaper.default;
 
     opacity.terminal = 0.9;
 
@@ -38,7 +38,7 @@ in
       package = pkgs.phinger-cursors;
     };
 
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/${conf.theme.name}.yaml";
     polarity = "dark";
   };
 

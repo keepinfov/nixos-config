@@ -42,7 +42,10 @@
       system = "x86_64-linux";
 
       # Import central configuration (named 'conf' to avoid shadowing NixOS config)
-      conf = import ./lib { lib = nixpkgs.lib; };
+      conf = import ./lib {
+        lib = nixpkgs.lib;
+        root = ./.;
+      };
 
       # Common special args for all hosts
       specialArgs = {

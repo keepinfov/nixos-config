@@ -1,12 +1,12 @@
 # lib/default.nix - Central configuration constants and utilities
-{ lib }:
+{ lib, root }:
 
 rec {
   # ============================================================================
   # VERSION MANAGEMENT
   # Change this single value to update system version across all hosts
   # ============================================================================
-  nixosVersion = "25.11";  # Options: "25.05", "25.11", "unstable"
+  nixosVersion = "unstable";  # Options: "25.05", "25.11", "unstable"
   
   # Derive the nixpkgs branch from version
   nixpkgsBranch = if nixosVersion == "unstable" 
@@ -14,7 +14,7 @@ rec {
     else "nixos-${nixosVersion}";
   
   # State version for home-manager and NixOS (usually stays stable)
-  stateVersion = "25.11";
+  stateVersion = "26.05";
   
   # ============================================================================
   # USER CONFIGURATION
@@ -40,7 +40,7 @@ rec {
   theme = {
     name = "catppuccin-mocha";
     wallpaper = {
-      default = "solid-black.png";
+      default = root + "/wallpaper.png";
       hyprland = "solid-black.png";
     };
     cursor = {
