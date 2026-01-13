@@ -1,4 +1,4 @@
-# hosts/thinkpad/disko.nix - Disk layout for ThinkPad X1 Carbon Gen 13
+# hosts/carbon/disko.nix - Disk layout for ThinkPad X1 Carbon Gen 13
 #
 # CONFIGURATION MODES
 # ===================
@@ -24,9 +24,9 @@ let
   # For dual-boot: existing Windows EFI partition
   existingEsp = "/dev/nvme0n1p1";
 
-  # For dual-boot: size for NixOS partition (e.g., "256G")
+  # For dual-boot: size for NixOS partition (e.g., "760G")
   # For single-boot: ignored (uses 100%)
-  nixosSize = "256G";
+  nixosSize = "760G";
 
   # Swap size
   swapSize = "8G";

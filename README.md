@@ -19,7 +19,7 @@ nixos-config/
 │   └── default.nix     # Central constants & version management
 ├── hosts/
 │   ├── maibenben/      # Gaming laptop
-│   └── thinkpad/       # Ultrabook
+│   └── carbon/       # Ultrabook
 ├── modules/
 │   ├── core/           # Base system (boot, nix, networking, users)
 │   ├── desktop/        # GNOME, Hyprland, Stylix
@@ -38,7 +38,7 @@ nixos-config/
 # From the config directory
 sudo nixos-rebuild switch --flake .#maibenben
 # or
-sudo nixos-rebuild switch --flake .#thinkpad
+sudo nixos-rebuild switch --flake .#carbon
 
 # Using nh (recommended)
 nh os switch .

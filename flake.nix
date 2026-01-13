@@ -79,7 +79,7 @@
     {
       nixosConfigurations = {
         maibenben = mkHost "maibenben";
-        thinkpad = mkHost "thinkpad";
+        carbon = mkHost "carbon";
       };
       
       # Development shells for different tasks
