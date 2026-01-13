@@ -67,7 +67,7 @@ in
           # === NixOS ===
           update = "nh os switch ${configPath}";
           rebuild = "sudo nixos-rebuild switch --flake ${configPath}";
-          test = "sudo nixos-rebuild test --flake ${configPath}";
+          # test = "sudo nixos-rebuild test --flake ${configPath}";
           gc-nix = "sudo nix-collect-garbage -d";
           
           # === System ===
@@ -116,18 +116,18 @@ in
             truncate_to_repo = true;
           };
           
-          git_branch = {
-            symbol = " ";
-          };
+          # git_branch = {
+          #   symbol = " ";
+          # };
           
           nix_shell = {
-            symbol = " ";
+            symbol = "❄️ ";
             format = "[$symbol$state]($style) ";
           };
           
-          rust.symbol = " ";
-          python.symbol = " ";
-          golang.symbol = " ";
+          # rust.symbol = " ";
+          # python.symbol = " ";
+          # golang.symbol = " ";
         };
       };
       

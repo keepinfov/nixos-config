@@ -49,7 +49,7 @@ in
     name = "ctf";
     packages = commonPkgs ++ (with pkgs; [
       # Binary analysis
-      ghidra
+      ghidra-bin
       radare2
       binwalk
       hexyl
@@ -59,7 +59,6 @@ in
       pwntools
       python3Packages.pwntools
       gdb
-      pwndbg
       
       # Network
       wireshark
@@ -84,7 +83,6 @@ in
       exiftool
       
       # Misc
-      python3Full
       python3Packages.requests
       python3Packages.beautifulsoup4
       z3
