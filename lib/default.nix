@@ -30,7 +30,7 @@ rec {
   # PATHS
   # ============================================================================
   paths = {
-    configDir = "/home/${user.name}/nixos-config";
+    configDir = "/home/${user.name}/config";
     cargoDir = "/home/${user.name}/.cargo/bin";
   };
   
@@ -38,7 +38,7 @@ rec {
   # THEMING
   # ============================================================================
   theme = {
-    name = "catppuccin-macchiato";
+    name = "catppuccin-mocha";
     wallpaper = {
       default = "solid-black.png";
       hyprland = "solid-black.png";
@@ -96,8 +96,8 @@ rec {
       features = [ "nvidia" "gaming" ];
     };
     
-    thinkpad = {
-      hostname = "thinkpad";
+    carbon = {
+      hostname = "carbon";
       hardware = {
         cpu = "intel";
         gpu = "intel";  # ThinkPad X1 Carbon Gen 13 Aura - integrated graphics
