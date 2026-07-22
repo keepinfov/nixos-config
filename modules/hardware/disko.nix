@@ -1,11 +1,10 @@
-# modules/hardware/disko.nix - Disk partitioning with LUKS and Btrfs
-# This is a TEMPLATE - copy and customize per host if needed
+# modules/hardware/disko.nix - Per-host disko template (intentionally a no-op)
+#
+# This module is imported by modules/hardware/default.nix but defines nothing
+# on its own. Real disk layouts (LUKS, Btrfs, etc.) live per host in
+# hosts/*/disko.nix. Keep this placeholder so the hardware aggregator has a
+# stable import point for shared disko defaults if they are ever needed.
 { lib, ... }:
 
 {
-  # Disko configuration is defined directly, not behind an option
-  # To use: enable in host config and set the device
-  
-  # This module is imported but does nothing by default
-  # Each host should define its own disko config if needed
 }
