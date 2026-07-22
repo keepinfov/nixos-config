@@ -81,10 +81,10 @@ in
     };
     
     services.xserver.videoDrivers = [ "nvidia" ];
-    
-    # Enable NVIDIA for Docker
-    virtualisation.docker.enableNvidia = true;
-    
+
+    # NVIDIA container support is enabled via
+    # hardware.nvidia-container-toolkit.enable above.
+
     # VRAM preservation during suspend
     systemd.tmpfiles.rules = [ "d /var/tmp 1777 root root -" ];
     

@@ -10,6 +10,7 @@ in
     ./virtualization.nix
     ./gaming.nix
     ./rust.nix
+	./ai.nix
   ];
 
   # User packages via home-manager
@@ -26,19 +27,26 @@ in
         
         # === Communication ===
         telegram-desktop
-        vesktop         # Discord
+        vesktop         # Discord (proxied)
         gajim           # XMPP
+		localsend
+
+        # === Music ===
+        spotify         # (proxied)
         
         # === Browsers ===
         chromium
         tor-browser
+        
+        # === Mail ===
+        thunderbird
         
         # === Media ===
         transmission_4-gtk
 		yandex-music
         
         # === Productivity ===
-        onlyoffice-desktopeditors
+		libreoffice
         obsidian
         
         # === Graphics ===
@@ -48,6 +56,10 @@ in
         
         # === Development ===
         android-studio
+		jetbrains-toolbox
+		opencode
+		gemini-cli
+		claude-code
         
         # === Gaming/Mods ===
         prismlauncher
@@ -55,7 +67,7 @@ in
         
         # === Wine ===
         winetricks
-        wineWowPackages.waylandFull
+        wineWow64Packages.waylandFull
         
         # === Wayland tools ===
         wl-clipboard
@@ -104,6 +116,19 @@ in
           sidebar-mode = true;
         };
       };
+    };
+  };
+
+  # Apps that always launch through the proxy
+  modules.core.proxy.wrappedApps = {
+    vesktop.package = pkgs.vesktop;
+    spotify = {
+      package = pkgs.spotify;
+      extraArgs = [
+        "--enable-features=UseOzonePlatform"
+        "--ozone-platform=wayland"
+        "--enable-wayland-ime"
+      ];
     };
   };
 }

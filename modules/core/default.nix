@@ -6,6 +6,7 @@
     ./boot.nix
     ./nix.nix
     ./networking.nix
+    ./proxy.nix
     ./security.nix
     ./users.nix
     ./locale.nix
@@ -38,12 +39,21 @@
     graphics = {
       enable = true;
       enable32Bit = true;
+      extraPackages = [ pkgs.pocl ];
     };
+
+	ipu6 = {
+	  enable = true;
+	  platform = "ipu6epmtl";
+	};
+	enableAllFirmware = true;
+	enableRedistributableFirmware = true;
   };
 
   # ============================================================================
-  # AUDIO
+  # AUDIO & VIDEO
   # ============================================================================
+  security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
     pulse.enable = true;
@@ -51,6 +61,8 @@
       enable = true;
       support32Bit = true;
     };
+    jack.enable = true;
+    wireplumber.enable = true;
   };
 
   # ============================================================================

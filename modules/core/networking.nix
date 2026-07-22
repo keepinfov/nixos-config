@@ -15,10 +15,15 @@ in
     
     firewall = {
       enable = true;
+	  allowedUDPPorts = [ 53 67 53317 ];
+	  allowedTCPPorts = [ 53 53317 ];
       # Add ports as needed per host
     };
   };
   
   # DNS resolution
   services.resolved.enable = true;
+
+  # Transparent proxy
+  modules.core.proxy.enable = true;
 }

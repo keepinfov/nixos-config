@@ -2,6 +2,7 @@
 { pkgs, inputs, ... }:
 
 {
+  services.udev.packages = with pkgs; [ yubikey-personalization ];
   environment.systemPackages = with pkgs; [
     # === Core utilities ===
     vim
@@ -13,6 +14,10 @@
     unzip
     zip
     p7zip
+	clinfo
+	pocl
+	yubikey-manager
+	libfido2
     
     # === Modern CLI tools ===
     bat           # cat replacement
@@ -42,6 +47,7 @@
     xdg-utils
     calc
     fastfetch
+	sof-firmware
     
     # === Git tools ===
     github-cli
@@ -49,6 +55,8 @@
     
     # === Network tools ===
     gping
+    redsocks
+    iptables
     
     # === Editors ===
     neovim
@@ -62,5 +70,6 @@
     git.enable = true;
     fish.enable = true;
     starship.enable = true;
+    amnezia-vpn.enable = true;
   };
 }

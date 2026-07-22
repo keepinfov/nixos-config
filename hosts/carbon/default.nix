@@ -16,8 +16,13 @@
   # ============================================================================
   # HARDWARE DETECTION
   # ============================================================================
-  boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
-  boot.kernelModules = [ "kvm-intel" ];
+  boot.initrd = {
+    availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
+	luks.devices."cryptroot".crypttabExtraOpts = [
+  	  "fido2-device=auto"
+	];
+  };
+  boot.kernelModules = [ "kvm-intel" "ipu6-drivers" "ivsc" "thinkpad_acpi" ];
   
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
@@ -57,9 +62,24 @@
   
   # Firmware updates
   services.fwupd.enable = true;
+
+  # Printers discovery
+  services.printing.enable = true;
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
+
+  services.netbird.clients.axsil = {
+	port = 51821;
+	ui.enable = true;
+	openFirewall = true;
+	openInternalFirewall = true;
+
+  };
+
   
-  # ============================================================================
-  # NO GAMING ON ULTRABOOK
-  # ============================================================================
-  programs.gaming.enable = false;
+  programs.gaming.enable = true;
+  programs.ai.enable = true;
 }

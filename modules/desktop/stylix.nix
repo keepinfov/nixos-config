@@ -43,12 +43,21 @@ in
   };
 
   # Home-manager stylix settings (icons renamed from iconTheme)
-  home-manager.users.${userName}.stylix = {
-    icons = {
-      enable = true;
-      package = pkgs.adwaita-icon-theme;
-      light = "Adwaita";
-      dark = "Adwaita";
+  home-manager.users.${userName} = {
+    # Tracking nixpkgs-unstable, so Stylix/Home-Manager release numbers may
+    # legitimately differ from each other and from nixpkgs. Silence the checks.
+    stylix = {
+      enableReleaseChecks = false;
+      # Only 'qtct' is currently supported by Stylix's qt target; the previous
+      # 'gnome' default is deprecated upstream.
+      targets.qt.platform = "qtct";
+      icons = {
+        enable = true;
+        package = pkgs.adwaita-icon-theme;
+        light = "Adwaita";
+        dark = "Adwaita";
+      };
     };
+    home.enableNixpkgsReleaseCheck = false;
   };
 }

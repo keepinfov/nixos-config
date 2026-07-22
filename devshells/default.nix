@@ -134,7 +134,7 @@ in
   python = pkgs.mkShell {
     name = "python";
     packages = commonPkgs ++ (with pkgs; [
-      python3Full
+      python3
       python3Packages.pip
       python3Packages.virtualenv
       python3Packages.ipython
@@ -186,9 +186,9 @@ in
       screen
       
       # Python for MicroPython/CircuitPython
-      python3Full
+      python3
       python3Packages.pyserial
-      python3Packages.esptool
+      esptool
       
       # Logic analyzer
       sigrok-cli
@@ -199,8 +199,7 @@ in
       libusb1
       
       # Debugging
-      probe-rs
-      cargo-embed
+      probe-rs-tools
     ]);
     
     shellHook = ''
@@ -216,14 +215,13 @@ in
     name = "web";
     packages = commonPkgs ++ (with pkgs; [
       nodejs_22
-      nodePackages.npm
-      nodePackages.pnpm
-      nodePackages.yarn
-      nodePackages.typescript
-      nodePackages.typescript-language-server
-      
+      pnpm
+      yarn
+      typescript
+      typescript-language-server
+
       # Frameworks
-      nodePackages.vite
+      vite
       
       # Utilities
       jq

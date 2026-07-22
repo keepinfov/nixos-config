@@ -14,7 +14,7 @@ rec {
     else "nixos-${nixosVersion}";
   
   # State version for home-manager and NixOS (usually stays stable)
-  stateVersion = "26.05";
+  stateVersion = "25.11";
   
   # ============================================================================
   # USER CONFIGURATION
@@ -40,7 +40,7 @@ rec {
   theme = {
     name = "catppuccin-mocha";
     wallpaper = {
-      default = root + "/wallpaper.png";
+      default = root + "/wallpaper.jpg";
       hyprland = "solid-black.png";
     };
     cursor = {
@@ -58,7 +58,6 @@ rec {
   # ============================================================================
   network = {
     dns = [
-      "1.1.1.1"         # Cloudflare
       "8.8.8.8"         # Google
     ];
     tailscaleDns = "100.126.179.69";

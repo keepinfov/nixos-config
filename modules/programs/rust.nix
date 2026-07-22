@@ -23,6 +23,10 @@ in
         "thumbv6m-none-eabi"      # Cortex-M0/M0+
         "thumbv7em-none-eabihf"   # Cortex-M4F/M7F
         "riscv32imac-unknown-none-elf"  # RISC-V
+		"aarch64-linux-android"
+		"armv7-linux-androideabi"
+		"i686-linux-android"
+		"x86_64-linux-android"
       ];
     }))
     pkgs.cargo-cross

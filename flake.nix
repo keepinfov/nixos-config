@@ -35,9 +35,16 @@
       submodules = true;
       url = "https://github.com/ndfined-crp/ayugram-desktop/";
     };
+    
+    v2rayb.url = "github:keepinfov/v2rayB/fix/md3-ui-improvements";
+    
+    winapps = {
+      url = "github:winapps-org/winapps";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, disko, stylix, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, disko, stylix, v2rayb, winapps, ... }@inputs:
     let
       system = "x86_64-linux";
 
@@ -66,6 +73,7 @@
           home-manager.nixosModules.home-manager
           disko.nixosModules.disko
           stylix.nixosModules.stylix
+          v2rayb.nixosModules.default
           
           # Common home-manager settings
           {
@@ -87,7 +95,11 @@
       
       # Development shells for different tasks
       devShells.${system} = import ./devshells {
-        pkgs = nixpkgs.legacyPackages.${system};
+        pkgs = import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+          overlays = [ inputs.rust-overlay.overlays.default ];
+        };
         inherit inputs;
       };
     };

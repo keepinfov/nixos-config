@@ -1,5 +1,5 @@
 # modules/desktop/gnome.nix - GNOME Desktop Environment
-{ lib, pkgs, config, conf, ... }:
+{ lib, pkgs, config, conf, inputs, ... }:
 
 with lib;
 
@@ -15,9 +15,15 @@ in
     extensions = mkOption {
       type = types.listOf types.package;
       default = with pkgs.gnomeExtensions; [
-        toggle-proxy
+	    gsconnect
+        proxy-switcher
+        caffeine
+        hotspot-toggle
+        night-light-toggle
+        quick-settings-touchpad-toggle
         appindicator
         clipboard-indicator
+        transparent-window
       ];
       description = "GNOME Shell extensions to install";
     };
@@ -63,6 +69,10 @@ in
     environment = {
       gnome.excludePackages = cfg.excludePackages;
       systemPackages = cfg.extensions ++ (with pkgs; [
+	  	libcamera
+		ipu6-camera-bins
+        inputs.winapps.packages."${pkgs.stdenv.hostPlatform.system}".winapps
+        inputs.winapps.packages."${pkgs.stdenv.hostPlatform.system}".winapps-launcher
         adwaita-icon-theme
         gnome-tweaks
       ]);
@@ -92,12 +102,15 @@ in
         dynamic-workspaces = false;
         edge-tiling = true;
         workspaces-only-on-primary = true;
+        experimental-features = [
+          "scale-monitor-framebuffer"
+        ];
       };
 
       "org/gnome/settings-daemon/plugins/power" = {
         sleep-inactive-ac-timeout = 3600;
         sleep-inactive-battery-timeout = 900;
-        power-button-action = "poweroff";
+		power-button-action = "interactive";
       };
 
       "org/gnome/desktop/peripherals/touchpad" = {
@@ -139,8 +152,8 @@ in
       };
 
       "org/gnome/settings-daemon/plugins/color" = {
-        night-light-enabled = true;
-        night-light-schedule-automatic = true;
+        night-light-enabled = false;
+        night-light-schedule-automatic = false;
         night-light-temperature = mkDefault 3700;
       };
     };
