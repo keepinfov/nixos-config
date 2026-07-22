@@ -25,7 +25,7 @@ in
         "dialout"  # For serial ports (embedded dev)
       ];
     };
-    
+
     root.shell = pkgs.fish;
   };
 }
