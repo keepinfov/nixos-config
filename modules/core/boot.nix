@@ -11,18 +11,18 @@
         efiInstallAsRemovable = true;
         efiSupport = true;
         device = "nodev";
-        theme = lib.mkDefault (pkgs.catppuccin-grub.overrideAttrs { 
-          flavor = "macchiato"; 
+        theme = lib.mkDefault (pkgs.catppuccin-grub.overrideAttrs {
+          flavor = "macchiato";
         });
       };
     };
 
     supportedFilesystems = [ "ntfs" "btrfs" ];
     kernelPackages = pkgs.linuxPackages_latest;
-    
+
     kernelModules = [ "tcp_bbr" ];
-    
-    # Network performance tuning
+
+    # === Network performance tuning ===
     kernel.sysctl = {
       # Security hardening
       "kernel.sysrq" = 0;
@@ -41,7 +41,7 @@
       "net.ipv4.conf.all.accept_source_route" = 0;
       "net.ipv6.conf.all.accept_source_route" = 0;
       "net.ipv4.tcp_rfc1337" = 1;
-      
+
       # Performance tuning
       "net.ipv4.tcp_fastopen" = 3;
       "net.ipv4.tcp_congestion_control" = "bbr";
