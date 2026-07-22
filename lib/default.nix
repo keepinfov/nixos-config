@@ -7,12 +7,18 @@ rec {
   # Change this single value to update system version across all hosts
   # ============================================================================
   nixosVersion = "unstable";  # Options: "25.05", "25.11", "unstable"
-  
+
+  # Secondary stable channel. Pinned in flake.nix as the `nixpkgs-stable` input
+  # and exposed to modules/home-manager as `pkgs-stable`. Use `pkgs-stable.<name>`
+  # for packages that are churny or broken on unstable; keep this in sync with the
+  # nixos-<version> branch referenced by that input.
+  stableVersion = "26.05";
+
   # Derive the nixpkgs branch from version
-  nixpkgsBranch = if nixosVersion == "unstable" 
-    then "nixos-unstable" 
+  nixpkgsBranch = if nixosVersion == "unstable"
+    then "nixos-unstable"
     else "nixos-${nixosVersion}";
-  
+
   # State version for home-manager and NixOS (usually stays stable)
   stateVersion = "25.11";
   

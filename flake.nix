@@ -3,9 +3,13 @@
 
   inputs = {
     # Core inputs - version managed through lib/default.nix concept
-    # Using nixos-unstable for latest features
+    # Using nixos-unstable as the primary channel for latest features
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    
+
+    # Secondary stable channel. Access in modules via `pkgs-stable.<name>`
+    # for packages that are churny/broken on unstable.
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-26.05";
+
     # Home manager
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -54,9 +58,15 @@
         root = ./.;
       };
 
+      # Stable package set, available to all modules/home-manager as `pkgs-stable`.
+      pkgs-stable = import inputs.nixpkgs-stable {
+        inherit system;
+        config.allowUnfree = true;
+      };
+
       # Common special args for all hosts
       specialArgs = {
-        inherit inputs conf;
+        inherit inputs conf pkgs-stable;
       };
       
       # Helper function to create a NixOS system

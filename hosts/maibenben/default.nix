@@ -53,4 +53,7 @@
     "1.1.1.1"
     "8.8.8.8"
   ];
+
+  # Transparent proxy
+  modules.core.proxy.enable = true;
 }

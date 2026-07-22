@@ -23,7 +23,4 @@ in
   
   # DNS resolution
   services.resolved.enable = true;
-
-  # Transparent proxy
-  modules.core.proxy.enable = true;
 }
