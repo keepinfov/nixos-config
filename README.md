@@ -7,7 +7,7 @@ Clean, modular NixOS configuration for multiple hosts with centralized managemen
 | Host | Device | GPU | Features |
 |------|--------|-----|----------|
 | `maibenben` | Maibenben x525 | NVIDIA RTX 4060 | Gaming, Docker+NVIDIA |
-| `thinkpad` | ThinkPad X1 Carbon Gen 13 | Intel Integrated | Power management, Ultrabook |
+| `carbon` | ThinkPad X1 Carbon Gen 13 | Intel Integrated | Power management, Ultrabook |
 
 ## 📁 Structure
 
