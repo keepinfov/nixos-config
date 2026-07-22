@@ -1,5 +1,5 @@
 # modules/core/packages.nix - System-wide packages
-{ pkgs, inputs, ... }:
+{ pkgs, pkgs-stable, inputs, ... }:
 
 {
   services.udev.packages = with pkgs; [ yubikey-personalization ];
@@ -14,11 +14,7 @@
     unzip
     zip
     p7zip
-	clinfo
-	pocl
-	yubikey-manager
-	libfido2
-    
+
     # === Modern CLI tools ===
     bat           # cat replacement
     bottom        # htop replacement
@@ -31,7 +27,7 @@
     ripgrep       # grep replacement
     procs         # ps replacement
     zoxide        # cd replacement
-    
+
     # === Development ===
     gcc
     gnumake
@@ -39,30 +35,38 @@
     go
     python3
     python3Packages.pip
-    
+
     # === System tools ===
     brightnessctl
     pamixer
     wireguard-tools
     xdg-utils
     calc
-    fastfetch
-	sof-firmware
-    
+    sof-firmware
+
+    # === Hardware / security tokens ===
+    clinfo
+    pocl
+    yubikey-manager
+    libfido2
+
     # === Git tools ===
     github-cli
     lazygit
-    
+
     # === Network tools ===
     gping
     redsocks
     iptables
-    
+
     # === Editors ===
     neovim
-    
+
     # === NixOS helpers ===
     nh            # Nix helper
+  ] ++ [
+    # Pinned to stable: fastfetch churns often on unstable, so track nixos-26.05.
+    pkgs-stable.fastfetch
   ];
 
   # Enable common programs
