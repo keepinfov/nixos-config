@@ -3,6 +3,7 @@
 
 {
   imports = [
+    ./base.nix
     ./nvidia.nix
     ./power.nix
     ./disko.nix

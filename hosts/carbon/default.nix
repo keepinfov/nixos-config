@@ -82,4 +82,7 @@
   
   programs.gaming.enable = true;
   programs.ai.enable = true;
+
+  # Transparent proxy
+  modules.core.proxy.enable = true;
 }
