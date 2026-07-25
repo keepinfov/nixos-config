@@ -6,7 +6,8 @@
     ./boot.nix
     ./nix.nix
     ./networking.nix
-    ./proxy.nix
+    ./amnezia.nix
+    ./routing.nix
     ./security.nix
     ./users.nix
     ./locale.nix

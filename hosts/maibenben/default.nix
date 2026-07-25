@@ -54,6 +54,6 @@
     "8.8.8.8"
   ];
 
-  # Transparent proxy
-  modules.core.proxy.enable = true;
+  # Route selector (VPN / proxy / direct)
+  modules.core.routing.enable = true;
 }

@@ -25,8 +25,14 @@ in
     };
     v2raya.enable = mkOption {
       type = types.bool;
-      default = true;
+      # Replaced by the oxidom daemon (services.oxidom); flip back if needed.
+      default = false;
       description = "Enable v2rayA proxy service";
+    };
+    oxidom.enable = mkOption {
+      type = types.bool;
+      default = true;
+      description = "Enable the oxidom Xray client (system daemon + GUI/tray)";
     };
   };
 
@@ -64,7 +70,20 @@ in
           cliPackage = pkgs.xray;
         };
       })
+      (mkIf cfg.oxidom.enable {
+        # SOCKS on 20172: the routing module (redsocks/nftables) expects the
+        # local proxy there, same contract v2rayA used to fulfill.
+        oxidom = {
+          enable = true;
+          socksPort = 20172;
+        };
+      })
     ];
+
+    programs.oxidom = mkIf cfg.oxidom.enable {
+      enable = true;
+      trayAutostart = true;
+    };
 
     # Security hardening
     security = {

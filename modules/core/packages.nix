@@ -74,6 +74,5 @@
     git.enable = true;
     fish.enable = true;
     starship.enable = true;
-    amnezia-vpn.enable = true;
   };
 }

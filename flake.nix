@@ -41,14 +41,26 @@
     };
     
     v2rayb.url = "github:keepinfov/v2rayB/fix/md3-ui-improvements";
-    
+
+    # Universal declarative GTK4/libadwaita chooser (route selector, etc.)
+    oxidom = {
+      # Local checkout for now; switch to github:keepinfov/oxidom once pushed.
+      url = "github:keepinfov/oxidom";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    choix = {
+      url = "github:keepinfov/choix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     winapps = {
       url = "github:winapps-org/winapps";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, disko, stylix, v2rayb, winapps, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, disko, stylix, v2rayb, winapps, choix, oxidom, ... }@inputs:
     let
       system = "x86_64-linux";
 
@@ -84,7 +96,9 @@
           disko.nixosModules.disko
           stylix.nixosModules.stylix
           v2rayb.nixosModules.default
-          
+          choix.nixosModules.default
+          oxidom.nixosModules.default
+
           # Common home-manager settings
           {
             home-manager = {
