@@ -6,6 +6,7 @@
     ./virtualization.nix
     ./gaming.nix
     ./rust.nix
+    ./slopium.nix
     ./ai.nix
   ];
 
@@ -15,15 +16,6 @@
     vesktop = {
       package = pkgs.vesktop;
       label = "Vesktop";
-    };
-    spotify = {
-      package = pkgs.spotify;
-      label = "Spotify";
-      extraArgs = [
-        "--enable-features=UseOzonePlatform"
-        "--ozone-platform=wayland"
-        "--enable-wayland-ime"
-      ];
     };
   };
 }

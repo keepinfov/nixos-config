@@ -37,11 +37,11 @@ in
           cls = "clear";
 
           # === Modern alternatives ===
-          ls = "eza --icons";
-          l = "eza -la --icons";
-          ll = "eza -l --icons";
-          la = "eza -la --icons";
-          lt = "eza --tree --icons";
+          ls = "eza --icons auto";
+          l = "eza -la --icons auto";
+          ll = "eza -l --icons auto";
+          la = "eza -la --icons auto";
+          lt = "eza --tree --icons auto";
           cat = "bat";
           grep = "rg";
           find = "fd";

@@ -75,6 +75,36 @@ nix develop .#web
 nix develop .#go
 ```
 
+## Horizon
+
+Horizon is packaged locally in `pkgs/horizon-launcher` and included in Home
+Manager. Upstream has a development `shell.nix`, but no flake. The official
+launcher runs in an FHS environment so the game binaries it downloads also have
+their Linux loader, graphics and audio libraries. Java 25 and Python are included.
+
+```bash
+# Try without rebuilding NixOS
+nix run .#horizon-launcher
+
+# Install just the launcher in the user profile
+nix profile add .#horizon-launcher
+```
+
+Start **Horizon** from the applications menu or run `horizon-launcher`. Sign in
+with a Microsoft account that owns Minecraft: Java Edition, install a Horizon
+version and choose **Download and prepare**. Alternatively, select an existing
+Minecraft 26.3 install in the launcher. Account sign-in and game preparation are
+required before playing; Java mod jars do not run in Horizon.
+
+The launcher and its data use `~/.local/share/horizon-launcher`. Launcher updates
+are managed here by changing `version` and `hash` in the package; game updates
+remain managed by the launcher. After a NixOS rebuild installs it through Home
+Manager, `nix profile remove horizon-launcher` can remove the temporary profile
+installation so it does not shadow later package updates.
+
+Upstream: [installation and requirements](https://github.com/horizon-rust/horizon#download),
+[launcher guide](https://github.com/horizon-rust/horizon/blob/main/launcher/README.md).
+
 ## ⚙️ Version Management
 
 Edit `lib/default.nix` to change the NixOS version for all hosts:

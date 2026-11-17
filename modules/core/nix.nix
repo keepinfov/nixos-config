@@ -13,6 +13,11 @@
 
       # Trusted users for remote builds
       trusted-users = [ "root" "@wheel" ];
+
+      substituters = ["https://mirror.yandex.ru/nixos"]; # "https://balds.cachix.org"];
+      trusted-public-keys = [
+        "balds.cachix.org-1:c0jfVRWyMyFb3Fxg7jWMv3Yx3u3tfa3T0dVX/ssWICg="
+      ];
     };
 
     # === Garbage collection ===

@@ -55,7 +55,7 @@ rec {
     };
     font = {
       name = "JetBrainsMono NF";
-      size = 10;
+      size = 12;
     };
   };
   

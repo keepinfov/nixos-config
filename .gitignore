@@ -1,6 +1,7 @@
 # Nix build outputs
 /result
 /result-*
+/.sass-cache
 
 # Secrets (if any)
 secrets/

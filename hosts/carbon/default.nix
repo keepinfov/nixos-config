@@ -81,8 +81,8 @@
 
   
   programs.gaming.enable = true;
-  programs.ai.enable = true;
+  programs.ai.enable = false;
 
   # Route selector (VPN / proxy / direct)
-  modules.core.routing.enable = true;
+  modules.core.routing.enable = false;
 }

@@ -76,6 +76,7 @@ in
         oxidom = {
           enable = true;
           socksPort = 20172;
+		  tun.enable = true;
         };
       })
     ];

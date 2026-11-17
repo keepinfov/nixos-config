@@ -3,7 +3,9 @@
 
   inputs = {
     # Core inputs - version managed through lib/default.nix concept
-    # Using nixos-unstable as the primary channel for latest features
+    # Using nixos-unstable as the primary channel; the whole desktop stack,
+    # including GNOME, follows it. nixpkgs-stable is only for individual
+    # churny/broken packages.
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     # Secondary stable channel. Access in modules via `pkgs-stable.<name>`
@@ -22,12 +24,24 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     
-    # Theming
-    stylix.url = "github:danth/stylix";
+    # Theming. Stylix upstream pins its GNOME target to gnome-shell 50.1,
+    # which breaks GNOME 51 lock-screen icons; override the theme source to
+    # 51.0 until Stylix supports it upstream.
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.gnome-shell.url = "gitlab:GNOME/gnome-shell/51.0?host=gitlab.gnome.org";
+    };
     
     # Development tools
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Local language toolchain; no remote is configured for it, so the input
+    # tracks the committed state of the working repository.
+    slopium = {
+      url = "github:keepinfov/slopium";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     
@@ -42,13 +56,12 @@
     
     v2rayb.url = "github:keepinfov/v2rayB/fix/md3-ui-improvements";
 
-    # Universal declarative GTK4/libadwaita chooser (route selector, etc.)
     oxidom = {
-      # Local checkout for now; switch to github:keepinfov/oxidom once pushed.
       url = "github:keepinfov/oxidom";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Universal declarative GTK4/libadwaita chooser (route selector, etc.)
     choix = {
       url = "github:keepinfov/choix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -58,6 +71,12 @@
       url = "github:winapps-org/winapps";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+	
+  	bootvine = {
+    	url = "git+https://codeberg.org/wvhulle/bootvine";
+    	inputs.nixpkgs.follows = "nixpkgs";
+  	};
   };
 
   outputs = { self, nixpkgs, home-manager, disko, stylix, v2rayb, winapps, choix, oxidom, ... }@inputs:
@@ -98,6 +117,7 @@
           v2rayb.nixosModules.default
           choix.nixosModules.default
           oxidom.nixosModules.default
+          inputs.slopium.nixosModules.default
 
           # Common home-manager settings
           {
@@ -116,6 +136,13 @@
         maibenben = mkHost "maibenben";
         carbon = mkHost "carbon";
       };
+
+      packages.${system} =
+        let pkgs = import nixpkgs { inherit system; };
+        in {
+          materialgram = pkgs.callPackage ./pkgs/materialgram { };
+          horizon-launcher = pkgs.callPackage ./pkgs/horizon-launcher { };
+        };
       
       # Development shells for different tasks
       devShells.${system} = import ./devshells {

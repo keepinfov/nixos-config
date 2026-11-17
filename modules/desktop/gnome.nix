@@ -32,7 +32,7 @@ in
       type = types.listOf types.package;
       default = with pkgs; [
         cheese epiphany evince geary
-        gnome-characters gnome-music gnome-photos
+        gnome-characters 
         gnome-tour hitori iagno tali totem
         yelp gnome-maps gnome-weather simple-scan
         snapshot
@@ -51,6 +51,9 @@ in
   };
 
   config = mkIf cfg.enable {
+    # GNOME follows nixpkgs-unstable. Do not overlay GNOME from the stable channel:
+    # it mixes a second glibc/libpam generation into the system and breaks PAM/GDM.
+
     services = {
       xserver = {
         enable = true;

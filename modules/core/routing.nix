@@ -202,7 +202,7 @@ in
 
     # 3b. choix profile: ask "route this app through?" and remember per key.
     #     Each option runs the matching setgid wrapper defined above.
-    programs.choix.enable = true;
+    programs.choix.enable = false;
     programs.choix.profiles.route = {
       question = "Route %APP% through:";
       layout = {

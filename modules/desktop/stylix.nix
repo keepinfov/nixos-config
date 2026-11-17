@@ -13,6 +13,9 @@ in
   stylix = {
     enable = true;
 
+    # Stylix's GNOME target is patched for GNOME 51 via the gnome-shell input
+    # override in flake.nix; keep this enabled to theme the shell and GDM.
+
     # Wallpaper from centralized config
     image = conf.theme.wallpaper.default;
 
