@@ -17,7 +17,7 @@
 
     # === Modern CLI tools ===
     bat           # cat replacement
-    bottom        # htop replacement
+	btop		  # idk why its here but huy not 'cause i like forced tty theme
     delta         # diff tool
     doggo         # DNS client
     duf           # df replacement

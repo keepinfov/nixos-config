@@ -607,11 +607,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1794841106,
-        "narHash": "sha256-TZDrA+Plrdic7oRiGxd8UQR6AwNKhfcwmBYNX/mp9Do=",
+        "lastModified": 1795009267,
+        "narHash": "sha256-9z3ofRP7XowudqQEeoCUsTVu4pzekOYkaSw0EJ+FCCg=",
         "owner": "keepinfov",
         "repo": "oxidom",
-        "rev": "6dda158150ee38b5b2f1ac3e494713ebe0269e71",
+        "rev": "4a67b4fe2f06dcadc4adaf11768c4b493a65d79e",
         "type": "github"
       },
       "original": {
